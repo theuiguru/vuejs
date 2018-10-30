@@ -4,20 +4,41 @@ const app = new Vue({
     // name: "Chris",
     // age: 28
     chris: {
-      name: "Chris Thomas",
+      first: "Chris",
+      last: "Thomas",
       age: 28
     },
     shawn: {
-      name: "Shawn Abraham",
+      first: "Shawn",
+      last: "Abraham",
       age: 29
+    }
+  },
+  computed: {
+    // chrisFullName() {
+    //   return `${this.chris.first} ${this.chris.last}`
+    // },
+    // shawnFullName() {
+    //   return `${this.shawn.first} ${this.shawn.last}`
+    // },
+    chrisAgeInOneYear() {
+      return this.chris.age + 1;
+    }
+  },
+  filters: {
+    ageInOneYear(age) {
+      return age + 1;
+    },
+    fullName(value) {
+      return `${value.first} ${value.last}`;
     }
   },
   template: `
     <div>
-      <h2>Name: {{chris.name}}</h2>
-      <h2>Age: {{chris.age}}</h2>
-      <h2>Name: {{shawn.name}}</h2>
-      <h2>Age: {{shawn.age}}</h2>
+      <h2>Name: {{chris | fullName}}</h2>
+      <h2>Age: {{chris.age | ageInOneYear}}</h2>
+      <h2>Name: {{shawn | fullName}}</h2>
+      <h2>Age: {{shawn.age | ageInOneYear}}</h2>
     </div>
   `
 })
